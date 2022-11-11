@@ -18,8 +18,8 @@ class LeftHandContainer extends StatelessWidget {
     switch (PageID) {
       case "CartPage":
         return Container(
-          height: 65,
-          width: 155,
+          height: GetHeightinPixels(65),
+          width: GetWidthinPixels(155),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(GetHeightinPixels(20)),
             color: Colors.white,
@@ -28,8 +28,8 @@ class LeftHandContainer extends StatelessWidget {
         );
       case "ReccomendedFood":
         return Container(
-          height: 60,
-          width: 90,
+          height: GetHeightinPixels(60),
+          width: GetWidthinPixels(90),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(GetHeightinPixels(20)),
             color: Colors.white,
@@ -40,8 +40,8 @@ class LeftHandContainer extends StatelessWidget {
     }
     // The Default Container For Page Undefined in the switch case Above!..
     return Container(
-      height: 50,
-      width: 80,
+      height: GetHeightinPixels(50),
+      width: GetWidthinPixels(80),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(GetHeightinPixels(20)),
         color: Colors.white,

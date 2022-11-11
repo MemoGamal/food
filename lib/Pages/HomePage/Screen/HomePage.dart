@@ -22,31 +22,34 @@ class HomePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: scaffoldColor,
-        body: Column(
-          children: [
-            const customRow(),
-            thePageView(),
-            Gap(GetHeightinPixels(10)),
-            const theDotsIndicator(),
-            Gap(GetHeightinPixels(10)),
-            Row(
-              children: [
-                Gap(GetWidthinPixels(10)),
-                const Mytext(
-                  theText: "Popular .",
-                  textColour: mainBlackColor,
-                  textSize: 25,
-                ),
-                Gap(GetWidthinPixels(20)),
-                const Mytext(
-                  theText: "Food pairing",
-                  textColour: textColor,
-                ),
-              ],
-            ),
-            Gap(GetHeightinPixels(20)),
-            const theListView(),
-          ],
+        body: SizedBox(
+          height: GetHeight(),
+          child: ListView(
+            children: [
+              const customRow(),
+              const thePageView(),
+              Gap(GetHeightinPixels(10)),
+              const theDotsIndicator(),
+              Gap(GetHeightinPixels(10)),
+              Row(
+                children: [
+                  Gap(GetWidthinPixels(10)),
+                  const Mytext(
+                    theText: "Popular .",
+                    textColour: mainBlackColor,
+                    textSize: 25,
+                  ),
+                  Gap(GetWidthinPixels(20)),
+                  const Mytext(
+                    theText: "Food pairing",
+                    textColour: textColor,
+                  ),
+                ],
+              ),
+              Gap(GetHeightinPixels(20)),
+              const theListView(),
+            ],
+          ),
         ),
       ),
     );

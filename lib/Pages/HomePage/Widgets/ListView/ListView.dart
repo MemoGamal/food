@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, camel_case_types
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_code_ecomm_app/config/app_layout.dart';
 import 'package:get/get.dart';
@@ -12,10 +13,12 @@ class theListView extends StatelessWidget {
   const theListView({super.key});
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Flexible(
       child: ListView.builder(
+        shrinkWrap: true,
         // itemCount: NetworkInjection.Response.length,
-        itemCount: 6,
+        itemCount: 18,
+        physics: const NeverScrollableScrollPhysics(),
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {
           return InkWell(

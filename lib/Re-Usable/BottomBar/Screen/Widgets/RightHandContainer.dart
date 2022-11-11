@@ -18,12 +18,13 @@ class RightHandContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List _PrivateList = [];
     return InkWell(
       // Add To Cart the Items..
 
       onTap: PageID == "ReccomendedFood" || PageID == "PopularFood"
           ? () {
+              List _PrivateList = [];
+
               Injections.CartInjection.addProducts(index);
 
               // Taking the total order number and assigning it to Cart(Each Item order number)- > Number of
@@ -36,14 +37,14 @@ class RightHandContainer extends StatelessWidget {
                 Injections.CartInjection.NumberOfOrders[index],
               ]);
 
-              Injections.CartInjection.MyMap
-                  .putIfAbsent(index, () => _PrivateList);
-              // Key..Value
-              //1--2--5--1000 ok..
-              print(
-                  "Index number of orders is ${Injections.CartInjection.NumberOfOrders[index]}");
-              print(
-                  "Index number of orders is ${Injections.CartInjection.NumberOfOrders}");
+              Injections.CartInjection.MyMap.addAll({index: _PrivateList});
+              // // Key..Value
+              // //1--2--5--1000 ok..
+              // print(
+              //     "Index number of orders is ${Injections.CartInjection.NumberOfOrders[index]}");
+              // print(
+              //     "Index number of orders is ${Injections.CartInjection.NumberOfOrders}");
+              // print(_PrivateList);
             }
           : () {
               // This will be only Used in The CartPage..

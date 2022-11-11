@@ -13,32 +13,32 @@ import '../Widgets/ProductItemRow/Screen/ProductRow.dart';
 import '../Widgets/TopBarIcons/Screen/RowOfIcons.dart';
 
 class Cart extends StatelessWidget {
-  const Cart({super.key});
+  Cart({super.key});
+
+  final List _ItemsInCart = [];
+  // List Only to Catch The index of each element in the cart .. 1,,15,,20,,150..
   @override
   Widget build(BuildContext context) {
+    Injections.CartInjection.MyMap.forEach(
+      (key, value) {
+        return _ItemsInCart.add(key);
+        //index (0,10,2,5)=>Key(0,10,2,5)..
+      },
+    );
     return Injections.CartInjection.MyMap.length == 0
-        ? EmptyCart()
+        ? const EmptyCart()
         : Scaffold(
-            bottomNavigationBar: OrderBottomBar(PageID: "CartPage", index: 0),
+            bottomNavigationBar:
+                const OrderBottomBar(PageID: "CartPage", index: 0),
             body: Column(
-              // var AssetedImage = Injections.CartInjection.MyMap[index]!.toList();
-
               crossAxisAlignment: CrossAxisAlignment.start,
-
               children: [
                 const RowOfIcons(),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: 10,
+                    itemCount: Injections.CartInjection.MyMap.length,
                     itemBuilder: (context, index) {
-                      var bool =
-                          Injections.CartInjection.MyMap.containsKey(index);
-
-                      return bool == false
-                          ? Container(
-                              // Returns notings..
-                              )
-                          : ProductRow(index: index);
+                      return ProductRow(index: _ItemsInCart[index]);
                     },
                   ),
                 ),

@@ -9,6 +9,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 
 import '../Cart/Screen/Cart.dart';
 import '../HomePage/Screen/HomePage.dart';
+import '../UserProfile/Screen/UserProfile.dart';
 import 'BottomBarWidget.dart';
 
 class Bottom_Bar extends StatelessWidget {
@@ -19,8 +20,8 @@ class Bottom_Bar extends StatelessWidget {
     final List<Widget> _WidgetOption = <Widget>[
       const HomePage(),
       const Text("User Favorite"),
-      const Cart(),
-      const Text("User Settings"),
+      Cart(),
+      const UserProfile(),
     ];
 
     return Scaffold(
@@ -32,7 +33,7 @@ class Bottom_Bar extends StatelessWidget {
             return Scaffold(
               body:
                   _WidgetOption[Injections.BottomBarInjection.ScreenPage.value],
-              bottomNavigationBar: BottomBarWidget(),
+              bottomNavigationBar: const BottomBarWidget(),
             );
           },
         ),

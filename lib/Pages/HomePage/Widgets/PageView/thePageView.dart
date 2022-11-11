@@ -23,7 +23,7 @@ class thePageView extends StatelessWidget {
       options: CarouselOptions(
         // Edit here to change allignments.! Position depends on space available to detect bottom Center..
 
-        height: GetHeightinPixels(275),
+        scrollDirection: Axis.horizontal, height: GetHeightinPixels(275),
 
         // Edit here to change allignments.! Position depends on space available to detect bottom Center..,
         initialPage: 0, // FirstPage

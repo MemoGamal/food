@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../config/TextWidget.dart';
 import '../../../config/app_layout.dart';
 import '../../../config/colors.dart';
+import '../Widgets/AnimationLogin.dart';
 import '../Widgets/ImageLogo.dart';
 import '../Widgets/custom_buttons.dart';
 import '../Widgets/custom_text_form_field.dart';
@@ -23,7 +24,7 @@ class LoginPage extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const ImageLogo(),
+                  const AnimationLogin(),
                   const Mytext(
                     theText: "Hello",
                     textSize: 50,
@@ -43,6 +44,7 @@ class LoginPage extends StatelessWidget {
                   Gap(GetHeightinPixels(10)),
                   CustomTextFormField(
                     hintText: "Password",
+                    
                     prefixIcon: const Icon(Icons.password),
                   ),
                   Gap(GetHeightinPixels(10)),

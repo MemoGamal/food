@@ -32,7 +32,7 @@ class RecommendedIconsRow extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: () => Get.to(() => const Cart()),
+              onTap: () => Get.to(() => Cart()),
               child: Container(
                 height: 40,
                 width: 40,

@@ -46,6 +46,9 @@ dependencies:
   google_nav_bar: ^5.0.6
   velocity_x:
   google_maps_flutter:
+  geocoding:
+  geolocator:
+  rive:
 dev_dependencies:
   flutter_test:
     sdk: flutter

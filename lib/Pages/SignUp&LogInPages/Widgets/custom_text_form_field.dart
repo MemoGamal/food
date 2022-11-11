@@ -30,6 +30,8 @@ class CustomTextFormField extends StatelessWidget {
           prefixIcon: prefixIcon,
           hintText: hintText,
           border: InputBorder.none,
+
+            
         ),
 
         keyboardType: phone == null ? null : TextInputType.number,

@@ -56,6 +56,9 @@ class Service extends GetxService {
       Get.to(() => const FailedConnection(
           ErrorMessage:
               "Internet Problem Please Check Your internet! Cat Says we are soory!"));
+    } on FormatException catch (e) {
+      Get.to(const FailedConnection(
+          ErrorMessage: "Disgusting Api Meowww Says's we are sorry.."));
     }
   }
 }

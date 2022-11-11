@@ -34,8 +34,8 @@ class BottomBarWidget extends StatelessWidget {
             text: "Cart",
           ),
           GButton(
-            icon: Icons.settings,
-            text: "Settings",
+            icon: Icons.person,
+            text: "User Profile",
           ),
         ]);
   }

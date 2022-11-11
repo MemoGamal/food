@@ -93,6 +93,7 @@ class BottomBarController extends GetxController {
 
 class CartController extends GetxController {
   Map<int, List> MyMap = {};
+
   // Map That Saves The key and value to each time user asks for Addition to cart
   Map NumberOfOrders = {}.obs;
   dynamic Result = 0.0.obs;
@@ -100,6 +101,7 @@ class CartController extends GetxController {
   Map TotalPrice = {}.obs;
   var TotalPriceGetter;
   Add(index) {
+    print(MyMap.keys);
     print(NumberOfOrders);
     NumberOfOrders[index]++;
     // PriceMultiplier();
@@ -114,14 +116,10 @@ class CartController extends GetxController {
   TotalPriceFun(int index) {
     TotalPriceGetter = 0.0;
 
-    for (int i = 0; i <= 10; i++) {
-      if (NumberOfOrders[i] == null) {
-        continue; // To avoid Empty location in Map ... user orderd order number 1..3..5.. to avoid 2&4
-      }
-      TotalPrice[i] = NumberOfOrders[i] * Price;
-      TotalPriceGetter += TotalPrice[i];
-      // print("Total Price Valuse are ${TotalPrice.values.toList()[index]}");
-    }
+    MyMap.forEach((key, value) {
+      TotalPrice[key] = NumberOfOrders[key] * Price;
+      TotalPriceGetter += TotalPrice[key];
+    });
     // print("Well This is the value ${TotalPrice.values}");
     // print("Well This is the value of Getter ${TotalPriceGetter}");
   }
@@ -138,6 +136,7 @@ class CartController extends GetxController {
   }
 
   addProducts(ProductIndex) {
+    // MyMap.addAll({0: []});
     // var test = MyMap[0]!.toList();
     // print(test[0]);
     // MyMap.forEach((key, value) {
