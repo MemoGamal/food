@@ -11,4 +11,5 @@ Init() {
   Injections.PageViewInjection;
   Injections.NetworkInjection;
   Injections.BottomBarInjection;
+  Injections.LogInPageInjection;
 }

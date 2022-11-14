@@ -8,6 +8,7 @@ import '../../HomePage/Screen/HomePage.dart';
 import '../Widgets/ImageLogo.dart';
 import '../Widgets/custom_buttons.dart';
 import '../Widgets/custom_text_form_field.dart';
+import 'LoginPage.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -25,22 +26,25 @@ class SignUpPage extends StatelessWidget {
               Gap(GetHeightinPixels(20)),
               CustomTextFormField(
                 hintText: AutofillHints.email,
-                prefixIcon: Icon(Icons.email_rounded),
+                prefixIcon: const Icon(Icons.email_rounded),
               ),
               Gap(GetHeightinPixels(15)),
               CustomTextFormField(
+                // Password TextFormField
                 hintText: AutofillHints.password,
-                prefixIcon: Icon(Icons.password),
+                prefixIcon: const Icon(Icons.password),
+                ObSecureText: true,
               ),
               Gap(GetHeightinPixels(15)),
               CustomTextFormField(
                 hintText: AutofillHints.telephoneNumber,
-                prefixIcon: Icon(Icons.phone_android_sharp),
+                prefixIcon: const Icon(Icons.phone_android_sharp),
+                phone: true,
               ),
               Gap(GetHeightinPixels(15)),
               CustomTextFormField(
                 hintText: AutofillHints.name,
-                prefixIcon: Icon(Icons.person),
+                prefixIcon: const Icon(Icons.person),
               ),
               Gap(GetHeightinPixels(40)),
               CustomButtonContainer(
@@ -51,9 +55,14 @@ class SignUpPage extends StatelessWidget {
                 },
               ),
               Gap(GetHeightinPixels(10)),
-              const Mytext(
-                theText: 'Have an Account ?',
-                textSize: 20,
+              InkWell(
+                onTap: () {
+                  Get.to(() => const LoginPage());
+                },
+                child: const Mytext(
+                  theText: 'Have an Account ? Login..',
+                  textSize: 20,
+                ),
               ),
               Gap(GetHeightinPixels(20)),
               const Mytext(

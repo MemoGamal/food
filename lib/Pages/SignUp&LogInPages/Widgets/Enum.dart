@@ -1,4 +1,4 @@
-enum AnimationEnum{
+enum AnimationEnum {
   idle,
   Hands_up,
   hands_down,
@@ -6,5 +6,5 @@ enum AnimationEnum{
   fail,
   Look_down_right,
   Look_down_left,
-  look_idle,
+  look_idle
 }

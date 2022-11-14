@@ -3,8 +3,10 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:rive/rive.dart';
 import '../Data/Service/Service.dart';
 import '../Feauture/Animations/Failed_Connection_Page/Screen/Screen.dart';
+import '../Pages/SignUp&LogInPages/Widgets/Enum.dart';
 
 class PageViewController extends GetxController {
   var theCarosurController = CarouselController(); // Carosur Controller..
@@ -155,4 +157,98 @@ class CartController extends GetxController {
           "the item has been added in your cart successfully");
     }
   }
+}
+
+class LoginPageController extends GetxController {
+  FocusNode PhoneFocus = FocusNode();
+  FocusNode PasswordFocus = FocusNode();
+
+  Artboard? riveArtboard;
+  RiveAnimationController controllerIdle =
+      SimpleAnimation(AnimationEnum.idle.name);
+  RiveAnimationController controllerHandsUp =
+      SimpleAnimation(AnimationEnum.Hands_up.name);
+  RiveAnimationController controllerHandsDown =
+      SimpleAnimation(AnimationEnum.hands_down.name);
+  RiveAnimationController controllerLookLeft =
+      SimpleAnimation(AnimationEnum.Look_down_left.name);
+  RiveAnimationController controllerLookRight =
+      SimpleAnimation(AnimationEnum.Look_down_right.name);
+  RiveAnimationController controllerSuccess =
+      SimpleAnimation(AnimationEnum.success.name);
+  RiveAnimationController controllerFail =
+      SimpleAnimation(AnimationEnum.fail.name);
+  void ResetControllers() {
+    riveArtboard?.artboard.removeController(controllerIdle);
+    riveArtboard?.artboard.removeController(controllerHandsUp);
+    riveArtboard?.artboard.removeController(controllerHandsDown);
+    riveArtboard?.artboard.removeController(controllerLookLeft);
+    riveArtboard?.artboard.removeController(controllerLookRight);
+    riveArtboard?.artboard.removeController(controllerSuccess);
+    riveArtboard?.artboard.removeController(controllerFail);
+  }
+
+  void AddIdle() {
+    ResetControllers();
+    riveArtboard?.artboard.addController(controllerIdle);
+  }
+
+  void AddHandsUp() {
+    ResetControllers();
+    riveArtboard?.artboard.addController(controllerHandsUp);
+  }
+
+  void AddHandsDown() {
+    ResetControllers();
+    riveArtboard?.artboard.addController(controllerHandsDown);
+  }
+
+  void AddLookLeft() {
+    ResetControllers();
+    riveArtboard?.artboard.addController(controllerLookLeft);
+  }
+
+  void AddLookRight() {
+    ResetControllers();
+    riveArtboard?.artboard.addController(controllerLookRight);
+  }
+
+  void AddSuccess() {
+    ResetControllers();
+    riveArtboard?.artboard.addController(controllerSuccess);
+  }
+
+  void Addfail() {
+    ResetControllers();
+    riveArtboard?.artboard.addController(controllerFail);
+  }
+
+  void PasswordNodeDetector() {
+    PasswordFocus.addListener(() {
+      if (PasswordFocus.hasFocus) {
+        print("Focused");
+        AddHandsUp();
+      } else if (!PasswordFocus.hasFocus) {
+        print("Unfocused");
+        AddHandsDown();
+      }
+    });
+  }
+
+  // The eyes are being Moved by the on Change Function in the textformfield ...
+
+  void EyesMover(value) {
+    if (PhoneFocus.hasFocus) {
+      if (value.length <= 15) {
+        AddLookLeft();
+      } else {
+        AddLookRight();
+      }
+    }
+  }
+  // The eyes are being Moved by the on Change Function in the textformfield ...
+  // void Check() {
+  //   // PasswordFocus.addListener(() { })
+  //   print(IsPasswordInFocus);
+  // }
 }
