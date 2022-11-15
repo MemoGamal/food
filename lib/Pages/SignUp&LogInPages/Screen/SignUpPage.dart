@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_code_ecomm_app/config/Injections.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
@@ -27,24 +28,36 @@ class SignUpPage extends StatelessWidget {
               CustomTextFormField(
                 hintText: AutofillHints.email,
                 prefixIcon: const Icon(Icons.email_rounded),
+                focusNode: Injections.LogInPageInjection.EmailFocus,
+                globalKey: Injections.LogInPageInjection.EmailKey,
+                validator: Injections.LogInPageInjection.EmailFilter,
               ),
               Gap(GetHeightinPixels(15)),
               CustomTextFormField(
                 // Password TextFormField
                 hintText: AutofillHints.password,
                 prefixIcon: const Icon(Icons.password),
-                ObSecureText: true,
+                focusNode: Injections.LogInPageInjection.SignUpPasswordFocus,
+                obSecureText: true,
+                globalKey: Injections.LogInPageInjection.SignUpPasswordKey,
+                validator: Injections.LogInPageInjection.PasswordFilter,
               ),
               Gap(GetHeightinPixels(15)),
               CustomTextFormField(
                 hintText: AutofillHints.telephoneNumber,
                 prefixIcon: const Icon(Icons.phone_android_sharp),
+                focusNode: Injections.LogInPageInjection.SignUpPhoneFocus,
                 phone: true,
+                globalKey: Injections.LogInPageInjection.SignUpPhoneKey,
+                validator: Injections.LogInPageInjection.PhoneFilter,
               ),
               Gap(GetHeightinPixels(15)),
               CustomTextFormField(
                 hintText: AutofillHints.name,
                 prefixIcon: const Icon(Icons.person),
+                focusNode: Injections.LogInPageInjection.NameFocus,
+                globalKey: Injections.LogInPageInjection.NameKey,
+                validator: Injections.LogInPageInjection.NameFilter,
               ),
               Gap(GetHeightinPixels(40)),
               CustomButtonContainer(
@@ -57,7 +70,7 @@ class SignUpPage extends StatelessWidget {
               Gap(GetHeightinPixels(10)),
               InkWell(
                 onTap: () {
-                  Get.to(() => const LoginPage());
+                  Get.to(() => LoginPage());
                 },
                 child: const Mytext(
                   theText: 'Have an Account ? Login..',

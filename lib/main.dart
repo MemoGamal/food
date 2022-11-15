@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       actions: Init(),
-      home: LoginPage(),
+      home: const LoginPage(),
       // home: const FetchingContent(),
     );
   }

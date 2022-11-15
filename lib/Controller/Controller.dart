@@ -160,8 +160,12 @@ class CartController extends GetxController {
 }
 
 class LoginPageController extends GetxController {
-  FocusNode PhoneFocus = FocusNode();
+  FocusNode LoginPhoneFocus = FocusNode();
+  FocusNode SignUpPhoneFocus = FocusNode();
   FocusNode PasswordFocus = FocusNode();
+  FocusNode SignUpPasswordFocus = FocusNode();
+  FocusNode EmailFocus = FocusNode();
+  FocusNode NameFocus = FocusNode();
 
   Artboard? riveArtboard;
   RiveAnimationController controllerIdle =
@@ -238,7 +242,7 @@ class LoginPageController extends GetxController {
   // The eyes are being Moved by the on Change Function in the textformfield ...
 
   void EyesMover(value) {
-    if (PhoneFocus.hasFocus) {
+    if (LoginPhoneFocus.hasFocus) {
       if (value.length <= 15) {
         AddLookLeft();
       } else {
@@ -251,4 +255,22 @@ class LoginPageController extends GetxController {
   //   // PasswordFocus.addListener(() { })
   //   print(IsPasswordInFocus);
   // }
+
+// LogIn Page Validation..
+  final GlobalKey<FormState> PhoneKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> SignUpPhoneKey = GlobalKey<FormState>();
+
+  final GlobalKey<FormState> PasswordKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> SignUpPasswordKey = GlobalKey<FormState>();
+
+  final GlobalKey<FormState> EmailKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> NameKey = GlobalKey<FormState>();
+  final NameFilter = r'^[a-z A-Z]+$';
+  final EmailFilter =
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+  final PhoneFilter = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+  final PasswordFilter =
+      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+  late FormState form;
+  final bool UnFocus = false;
 }
