@@ -30,7 +30,9 @@ class CustomTextFormField extends StatelessWidget {
       form = TheGlobalKey.currentState!;
 
       if (form.validate()) {
-        debugPrint("Well Validation is working these days..");
+        // debugPrint("Well Validation is working these days..");
+      } else {
+        print("Somethingis wrong!");
       }
     }
 
@@ -83,8 +85,10 @@ class CustomTextFormField extends StatelessWidget {
               color: Colors.red,
             ),
             errorBorder: OutlineInputBorder(
+
               borderRadius: BorderRadius.circular(GetWidthinPixels(25)),
               borderSide: BorderSide(
+                
                 color: Colors.red,
                 width: GetWidthinPixels(3),
               ),
