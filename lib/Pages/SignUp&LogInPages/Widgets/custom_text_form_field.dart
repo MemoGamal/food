@@ -8,27 +8,27 @@ class CustomTextFormField extends StatelessWidget {
   bool? phone;
   final String hintText;
   final Icon prefixIcon;
-  final FocusNode TheFocusNode;
-  final bool? ObSecureText;
-  final GlobalKey<FormState> TheGlobalKey;
-  final String Validator;
+  final FocusNode focusNode;
+  final GlobalKey<FormState> globalKey;
+  final String validator;
+  bool obSecureText;
   CustomTextFormField({
     super.key,
     this.phone,
     required this.hintText,
     required this.prefixIcon,
-    required this.TheGlobalKey,
-    required this.Validator,
-    required this.TheFocusNode,
-    this.ObSecureText = false,
+    required this.globalKey,
+    required this.validator,
+    required this.focusNode,
+     this.obSecureText=false ,
   });
+
   late FormState form;
 
   @override
   Widget build(BuildContext context) {
-    void Validation() {
-      form = TheGlobalKey.currentState!;
-
+    void validation() {
+      form = globalKey.currentState!;
       if (form.validate()) {
         // debugPrint("Well Validation is working these days..");
       } else {
@@ -36,73 +36,76 @@ class CustomTextFormField extends StatelessWidget {
       }
     }
 
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(50),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.grey,
-            blurRadius: 15,
-            blurStyle: BlurStyle.outer,
+    return Stack(
+      children: [
+        Container(
+          width: double.infinity,
+          height: 55,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            color: Colors.white,
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.grey,
+                blurRadius: 15,
+                blurStyle: BlurStyle.outer,
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Form(
-        key: TheGlobalKey,
-        child: TextFormField(
-          autofocus: true,
+        ),
+        Form(
+          key: globalKey,
+          child: TextFormField(
+            autofocus: true,
+            focusNode: focusNode,
+            onTap: () {
+              focusNode.requestFocus();
+            },
 
-          focusNode: TheFocusNode,
-          onTap: () {
-            TheFocusNode.requestFocus();
-          },
-
-          onChanged: (value) {
-            Injections.LogInPageInjection.EyesMover(value);
-            Validation();
-          },
-          onSaved: (newValue) {
-            print("TheFocusNode.nextFocus();${TheFocusNode.nextFocus()}");
-          },
-          validator: (value) {
-            if (value!.isEmpty || !RegExp(Validator).hasMatch(value)) {
-              return "Please Enter Valid Information";
-            } else {
-              return null;
-            }
-          },
-
-          obscureText: ObSecureText!,
-          decoration: InputDecoration(
-            prefixIcon: prefixIcon,
-            hintText: hintText,
-            border: InputBorder.none,
-            // errorBorder: ,
-            errorStyle: TextStyle(
-              fontFamily: "Number1",
-              fontSize: GetWidthinPixels(16),
-              fontWeight: FontWeight.bold,
-              color: Colors.red,
-            ),
-            errorBorder: OutlineInputBorder(
-
-              borderRadius: BorderRadius.circular(GetWidthinPixels(25)),
-              borderSide: BorderSide(
-                
+            onChanged: (value) {
+              Injections.LogInPageInjection.EyesMover(value);
+              validation();
+            },
+            onSaved: (newValue) {
+              print("focusNode.nextFocus();${focusNode.nextFocus()}");
+            },
+            validator: (value) {
+              if (value!.isEmpty || !RegExp(validator).hasMatch(value)) {
+                return "Please Enter Valid Information";
+              }
+            },
+            decoration: InputDecoration(
+              prefixIcon: prefixIcon,
+              hintText: hintText,
+              border: InputBorder.none,
+              // errorBorder: ,
+              errorStyle: TextStyle(
+                height: 1.5,
+                inherit: true,
+                fontSize: GetWidthinPixels(16),
+                fontWeight: FontWeight.bold,
                 color: Colors.red,
-                width: GetWidthinPixels(3),
               ),
             ),
+            keyboardType: phone == null ? null : TextInputType.number,
+            // Restricting The input to be only numbers..
+            inputFormatters: phone == null
+                ? null
+                : <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
           ),
-          keyboardType: phone == null ? null : TextInputType.number,
-          // Restricting The input to be only numbers..
-          inputFormatters: phone == null
-              ? null
-              : <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly,
-                ],
         ),
-      ),
+      ],
     );
+  }
+}
+
+class CustomPasswordField extends StatelessWidget {
+  const CustomPasswordField({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
