@@ -33,13 +33,15 @@ class LoginPage extends StatelessWidget {
             textSize: 20,
             textColour: textColor, // Error Hna fel Colour
           ),
-          RiveAnimation(),
+          const RiveAnimation(),
           Gap(GetHeightinPixels(10)),
           CustomTextFormField(
             hintText: "Phone",
             prefixIcon: const Icon(Icons.phone_android_outlined),
             phone: true,
-            TheFocusNode: Injections.LogInPageInjection.PhoneFocus,
+            TheFocusNode: Injections.LogInPageInjection.LoginPhoneFocus,
+            TheGlobalKey: Injections.LogInPageInjection.PhoneKey,
+            Validator: Injections.LogInPageInjection.PhoneFilter,
           ),
           Gap(GetHeightinPixels(10)),
           CustomTextFormField(
@@ -47,6 +49,8 @@ class LoginPage extends StatelessWidget {
             prefixIcon: const Icon(Icons.password),
             TheFocusNode: Injections.LogInPageInjection.PasswordFocus,
             ObSecureText: true,
+            TheGlobalKey: Injections.LogInPageInjection.PasswordKey,
+            Validator: Injections.LogInPageInjection.PasswordFilter,
           ),
           Gap(GetHeightinPixels(10)),
           Row(
@@ -65,7 +69,8 @@ class LoginPage extends StatelessWidget {
               containerText: "Sign in",
               containerSize: 20,
               onTap: () {
-                Get.to(() => const FetchingContent());
+                Injections.LogInPageInjection.ValidateAndSave();
+                // Get.to(() => const FetchingContent());
               }),
           Gap(GetHeightinPixels(50)),
           Row(

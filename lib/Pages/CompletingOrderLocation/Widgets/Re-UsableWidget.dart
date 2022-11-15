@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_code_ecomm_app/config/Injections.dart';
 import 'package:flutter_clean_code_ecomm_app/config/app_layout.dart';
 import 'package:gap/gap.dart';
 import '../../../config/TextWidget.dart';
@@ -39,6 +40,9 @@ class ReUsableWidget extends StatelessWidget {
             TextFormFieldIcon,
             color: iconColor1,
           ),
+          TheFocusNode: Injections.LogInPageInjection.PhoneFocus,
+          TheGlobalKey: Injections.LogInPageInjection.NameKey,
+          Validator: Injections.LogInPageInjection.PhoneFilter,
         ),
         Gap(GetHeightinPixels(10)),
       ],

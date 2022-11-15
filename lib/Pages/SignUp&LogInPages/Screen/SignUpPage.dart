@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_code_ecomm_app/config/Injections.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
@@ -27,24 +28,36 @@ class SignUpPage extends StatelessWidget {
               CustomTextFormField(
                 hintText: AutofillHints.email,
                 prefixIcon: const Icon(Icons.email_rounded),
+                TheFocusNode: Injections.LogInPageInjection.EmailFocus,
+                TheGlobalKey: Injections.LogInPageInjection.EmailKey,
+                Validator: Injections.LogInPageInjection.EmailFilter,
               ),
               Gap(GetHeightinPixels(15)),
               CustomTextFormField(
                 // Password TextFormField
                 hintText: AutofillHints.password,
                 prefixIcon: const Icon(Icons.password),
+                TheFocusNode: Injections.LogInPageInjection.SignUpPasswordFocus,
                 ObSecureText: true,
+                TheGlobalKey: Injections.LogInPageInjection.PasswordKey,
+                Validator: Injections.LogInPageInjection.PasswordFilter,
               ),
               Gap(GetHeightinPixels(15)),
               CustomTextFormField(
                 hintText: AutofillHints.telephoneNumber,
                 prefixIcon: const Icon(Icons.phone_android_sharp),
+                TheFocusNode: Injections.LogInPageInjection.SignUpPhoneFocus,
                 phone: true,
+                TheGlobalKey: Injections.LogInPageInjection.PhoneKey,
+                Validator: Injections.LogInPageInjection.PhoneFilter,
               ),
               Gap(GetHeightinPixels(15)),
               CustomTextFormField(
                 hintText: AutofillHints.name,
                 prefixIcon: const Icon(Icons.person),
+                TheFocusNode: Injections.LogInPageInjection.NameFocus,
+                TheGlobalKey: Injections.LogInPageInjection.NameKey,
+                Validator: Injections.LogInPageInjection.NameFilter,
               ),
               Gap(GetHeightinPixels(40)),
               CustomButtonContainer(
