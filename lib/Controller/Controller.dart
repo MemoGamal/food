@@ -258,7 +258,11 @@ class LoginPageController extends GetxController {
 
 // LogIn Page Validation..
   final GlobalKey<FormState> PhoneKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> SignUpPhoneKey = GlobalKey<FormState>();
+
   final GlobalKey<FormState> PasswordKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> SignUpPasswordKey = GlobalKey<FormState>();
+
   final GlobalKey<FormState> EmailKey = GlobalKey<FormState>();
   final GlobalKey<FormState> NameKey = GlobalKey<FormState>();
   final NameFilter = r'^[a-z A-Z]+$';
@@ -267,4 +271,6 @@ class LoginPageController extends GetxController {
   final PhoneFilter = r'(^(?:[+0]9)?[0-9]{10,12}$)';
   final PasswordFilter =
       r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+  late FormState form;
+  final bool UnFocus = false;
 }

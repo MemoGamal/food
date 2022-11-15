@@ -61,7 +61,12 @@ class LoginPage extends StatelessWidget {
                   containerText: "Sign in",
                   containerSize: 20,
                   onTap: () {
-                    Injections.LogInPageInjection.ValidateAndSave();
+                    Injections.LogInPageInjection.PasswordFocus.unfocus();
+                    if (Injections.LogInPageInjection.form.validate()) {
+                      Injections.LogInPageInjection.AddSuccess();
+                    } else {
+                      Injections.LogInPageInjection.Addfail();
+                    }
                     // Get.to(() => const FetchingContent());
                   }),
               Gap(GetHeightinPixels(50)),

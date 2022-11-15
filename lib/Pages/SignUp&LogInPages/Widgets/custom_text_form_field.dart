@@ -11,6 +11,7 @@ class CustomTextFormField extends StatelessWidget {
   final FocusNode focusNode;
   final GlobalKey<FormState> globalKey;
   final String validator;
+
   bool obSecureText;
   CustomTextFormField({
     super.key,
@@ -20,16 +21,14 @@ class CustomTextFormField extends StatelessWidget {
     required this.globalKey,
     required this.validator,
     required this.focusNode,
-     this.obSecureText=false ,
+    this.obSecureText = false,
   });
-
-  late FormState form;
 
   @override
   Widget build(BuildContext context) {
     void validation() {
-      form = globalKey.currentState!;
-      if (form.validate()) {
+      Injections.LogInPageInjection.form = globalKey.currentState!;
+      if (Injections.LogInPageInjection.form.validate()) {
         // debugPrint("Well Validation is working these days..");
       } else {
         print("Somethingis wrong!");
@@ -60,15 +59,16 @@ class CustomTextFormField extends StatelessWidget {
             focusNode: focusNode,
             onTap: () {
               focusNode.requestFocus();
+              Injections.LogInPageInjection.UnFocus == false
+                  ? null
+                  : focusNode.unfocus();
             },
 
             onChanged: (value) {
               Injections.LogInPageInjection.EyesMover(value);
               validation();
             },
-            onSaved: (newValue) {
-              print("focusNode.nextFocus();${focusNode.nextFocus()}");
-            },
+            onSaved: (newValue) {},
             validator: (value) {
               if (value!.isEmpty || !RegExp(validator).hasMatch(value)) {
                 return "Please Enter Valid Information";
@@ -80,8 +80,8 @@ class CustomTextFormField extends StatelessWidget {
               border: InputBorder.none,
               // errorBorder: ,
               errorStyle: TextStyle(
-                height: 1.5,
-                inherit: true,
+                // height: 1.5,
+                // inherit: true,
                 fontSize: GetWidthinPixels(16),
                 fontWeight: FontWeight.bold,
                 color: Colors.red,
@@ -98,14 +98,5 @@ class CustomTextFormField extends StatelessWidget {
         ),
       ],
     );
-  }
-}
-
-class CustomPasswordField extends StatelessWidget {
-  const CustomPasswordField({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

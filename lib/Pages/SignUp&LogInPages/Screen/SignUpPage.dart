@@ -39,16 +39,16 @@ class SignUpPage extends StatelessWidget {
                 prefixIcon: const Icon(Icons.password),
                 focusNode: Injections.LogInPageInjection.SignUpPasswordFocus,
                 obSecureText: true,
-                globalKey: Injections.LogInPageInjection.PasswordKey,
+                globalKey: Injections.LogInPageInjection.SignUpPasswordKey,
                 validator: Injections.LogInPageInjection.PasswordFilter,
               ),
               Gap(GetHeightinPixels(15)),
               CustomTextFormField(
                 hintText: AutofillHints.telephoneNumber,
                 prefixIcon: const Icon(Icons.phone_android_sharp),
-              focusNode: Injections.LogInPageInjection.SignUpPhoneFocus,
+                focusNode: Injections.LogInPageInjection.SignUpPhoneFocus,
                 phone: true,
-               globalKey: Injections.LogInPageInjection.PhoneKey,
+                globalKey: Injections.LogInPageInjection.SignUpPhoneKey,
                 validator: Injections.LogInPageInjection.PhoneFilter,
               ),
               Gap(GetHeightinPixels(15)),
@@ -70,7 +70,7 @@ class SignUpPage extends StatelessWidget {
               Gap(GetHeightinPixels(10)),
               InkWell(
                 onTap: () {
-                  Get.to(() => const LoginPage());
+                  Get.to(() => LoginPage());
                 },
                 child: const Mytext(
                   theText: 'Have an Account ? Login..',
