@@ -2,37 +2,86 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_clean_code_ecomm_app/config/Injections.dart';
 import 'package:flutter_clean_code_ecomm_app/config/app_layout.dart';
-import 'package:get/get.dart';
 
 class CustomTextFormField extends StatelessWidget {
   bool? phone;
   final String hintText;
-  final Icon prefixIcon;
-  final FocusNode focusNode;
-  final GlobalKey<FormState> globalKey;
-  final String validator;
 
   bool obSecureText;
   CustomTextFormField({
     super.key,
     this.phone,
     required this.hintText,
-    required this.prefixIcon,
-    required this.globalKey,
-    required this.validator,
-    required this.focusNode,
     this.obSecureText = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    void validation() {
-      Injections.LogInPageInjection.form = globalKey.currentState!;
-      if (Injections.LogInPageInjection.form.validate()) {
-        // debugPrint("Well Validation is working these days..");
+    Icon prefixIcon = const Icon(Icons.wrong_location);
+    String WhatIsWrongValidator = "";
+    GlobalKey<FormState> globalKey = GlobalKey();
+    TextEditingController textEditingController = TextEditingController();
+    FocusNode focusNode = FocusNode();
+    var UserTypedData;
+
+    String validator = "";
+    void IDChecker() {
+      if (focusNode == Injections.LogInPageInjection.LoginPhoneFocus &&
+          globalKey.currentState!.validate()) {
+        debugPrint("Phone is Right!");
+        Injections.LogInPageInjection.LogInID = true;
+      } else if (focusNode != Injections.LogInPageInjection.LoginPhoneFocus) {
+        debugPrint("Phone Is not Selected");
       } else {
-        print("Somethingis wrong!");
+        debugPrint("Phone is Wrong");
+        Injections.LogInPageInjection.LogInID = false;
       }
+    }
+
+    void PasswordChecker() {
+      if (focusNode == Injections.LogInPageInjection.PasswordFocus &&
+          globalKey.currentState!.validate()) {
+        debugPrint("Password is Right");
+        Injections.LogInPageInjection.LogInPassword = true;
+      } else if (focusNode != Injections.LogInPageInjection.PasswordFocus) {
+        debugPrint("Password Is not Selected");
+      } else {
+        debugPrint("Password is Wrong");
+        Injections.LogInPageInjection.LogInPassword = false;
+      }
+    }
+
+    switch (hintText) {
+      case AutofillHints.email:
+        prefixIcon = const Icon(Icons.email_rounded);
+        focusNode = Injections.LogInPageInjection.EmailFocus;
+
+        break;
+      case AutofillHints.password:
+        prefixIcon = const Icon(Icons.password);
+        focusNode = Injections.LogInPageInjection.SignUpPasswordFocus;
+        // obSecureText: true,
+        break;
+      case AutofillHints.telephoneNumber:
+        prefixIcon = const Icon(Icons.phone_android_sharp);
+        focusNode = Injections.LogInPageInjection.SignUpPhoneFocus;
+        //phone: true,
+        break;
+      case AutofillHints.name:
+        prefixIcon = const Icon(Icons.person);
+        focusNode = Injections.LogInPageInjection.NameFocus;
+        break;
+      // LoginPage..
+      case "Login Email":
+        prefixIcon = const Icon(Icons.email_rounded);
+        focusNode = Injections.LogInPageInjection.LoginEmailFocus;
+        break;
+      case "Password":
+        prefixIcon = const Icon(Icons.password);
+        focusNode = Injections.LogInPageInjection.PasswordFocus;
+        // obSecureText: true,
+        break;
+      default:
     }
 
     return Stack(
@@ -55,33 +104,42 @@ class CustomTextFormField extends StatelessWidget {
         Form(
           key: globalKey,
           child: TextFormField(
+            controller: textEditingController,
             autofocus: true,
+            // focusNode: focusNode,
             focusNode: focusNode,
             onTap: () {
               focusNode.requestFocus();
-              Injections.LogInPageInjection.UnFocus == false
-                  ? null
-                  : focusNode.unfocus();
+              //Important for the animation..
             },
 
             onChanged: (value) {
               Injections.LogInPageInjection.EyesMover(value);
-              validation();
-            },
-            onSaved: (newValue) {},
-            validator: (value) {
-              if (value!.isEmpty || !RegExp(validator).hasMatch(value)) {
-                return "Please Enter Valid Information";
+              UserTypedData = textEditingController.text;
+              if (focusNode == Injections.LogInPageInjection.EmailFocus) {
+                Injections.LogInPageInjection.TypedEmailData = UserTypedData;
+              }
+              if (focusNode ==
+                  Injections.LogInPageInjection.SignUpPasswordFocus) {
+                Injections.LogInPageInjection.TypedPasswordData = UserTypedData;
+              }
+              // Login Page
+              if (focusNode == Injections.LogInPageInjection.LoginEmailFocus) {
+                Injections.LogInPageInjection.TypedLoginEmailData =
+                    UserTypedData;
+              }
+              if (focusNode == Injections.LogInPageInjection.PasswordFocus) {
+                Injections.LogInPageInjection.TypedLoginPasswordData =
+                    UserTypedData;
               }
             },
+
             decoration: InputDecoration(
               prefixIcon: prefixIcon,
               hintText: hintText,
               border: InputBorder.none,
               // errorBorder: ,
               errorStyle: TextStyle(
-                // height: 1.5,
-                // inherit: true,
                 fontSize: GetWidthinPixels(16),
                 fontWeight: FontWeight.bold,
                 color: Colors.red,
@@ -89,11 +147,11 @@ class CustomTextFormField extends StatelessWidget {
             ),
             keyboardType: phone == null ? null : TextInputType.number,
             // Restricting The input to be only numbers..
-            inputFormatters: phone == null
-                ? null
-                : <TextInputFormatter>[
+            inputFormatters: phone == true
+                ? <TextInputFormatter>[
                     FilteringTextInputFormatter.digitsOnly,
-                  ],
+                  ]
+                : null,
           ),
         ),
       ],

@@ -1,10 +1,12 @@
 // ignore_for_file: non_constant_identifier_names, file_names, unnecessary_overrides
 
 import 'package:carousel_slider/carousel_controller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart';
-import '../Data/Service/Service.dart';
+import '../Service/Service.dart';
 import '../Feauture/Animations/Failed_Connection_Page/Screen/Screen.dart';
 import '../Pages/SignUp&LogInPages/Widgets/Enum.dart';
 
@@ -30,30 +32,33 @@ class PageViewController extends GetxController {
 
 class ApiController extends GetxController {
   var isLoading = true.obs;
-  late List Response = [];
+  List<String> ListOfFoodLink = [];
+  List<String> ListOfFoodName = [];
+  List<String> ListOfFoodDescription = [];
+  List<String> ListOfLongFoodDescription = [];
+  List<int> ListOfFoodPrice = [];
 
   void FetchProduct() async {
     try {
       isLoading.value = true;
-      Response = await Service.FetchProducts();
 
       // Fetch Product out of service.
+      await Service.FetchProducts();
     } on Error {
       // To Avoid Null Error if SomeThing is wrong with the api..
       const FailedConnection(
         ErrorMessage:
             "Please Call the Developer and Say Meooow Server Problem In Controller",
       );
-    } finally {
-      isLoading.value = false;
     }
   }
 }
 
 class OrderGetterController extends GetxController {
-  var Price = 0.8; // I use Fake Price Because Api Don't Give One..
+  int Price = 1;
+  //= 1; //= 0.8; // I use Fake Price Because Api Don't Give One..
   var Number = 1.obs;
-  var Result = 0.8;
+  var Result;
   int inCartItems = 0;
 
   get PriceGetter => Result.toStringAsFixed(2);
@@ -99,12 +104,9 @@ class CartController extends GetxController {
   // Map That Saves The key and value to each time user asks for Addition to cart
   Map NumberOfOrders = {}.obs;
   dynamic Result = 0.0.obs;
-  var Price = 0.8; // I use fake Price because api don't give one!..
-  Map TotalPrice = {}.obs;
-  var TotalPriceGetter;
+  int Price = 0; // I use fake Price because api don't give one!..
+  int TotalPriceGetter = 0;
   Add(index) {
-    print(MyMap.keys);
-    print(NumberOfOrders);
     NumberOfOrders[index]++;
     // PriceMultiplier();
     update();
@@ -116,19 +118,22 @@ class CartController extends GetxController {
   }
 
   TotalPriceFun(int index) {
-    TotalPriceGetter = 0.0;
-
+    TotalPriceGetter = 0;
     MyMap.forEach((key, value) {
-      TotalPrice[key] = NumberOfOrders[key] * Price;
-      TotalPriceGetter += TotalPrice[key];
+      TotalPriceGetter += MyMap[key]![3] * NumberOfOrders[key] as int;
     });
+
+    // TotalPriceGetter = 0.0;
+
+    // MyMap.forEach((key, value) {
+    //   TotalPrice[key] = NumberOfOrders[key] * Price;
+    //   TotalPriceGetter += TotalPrice[key];
+    // });
     // print("Well This is the value ${TotalPrice.values}");
     // print("Well This is the value of Getter ${TotalPriceGetter}");
   }
 
   Minus(index) {
-    print(NumberOfOrders[index]);
-
     if (NumberOfOrders[index] <= 1) {
     } else {
       NumberOfOrders[index]--;
@@ -160,7 +165,7 @@ class CartController extends GetxController {
 }
 
 class LoginPageController extends GetxController {
-  FocusNode LoginPhoneFocus = FocusNode();
+  FocusNode LoginEmailFocus = FocusNode();
   FocusNode SignUpPhoneFocus = FocusNode();
   FocusNode PasswordFocus = FocusNode();
   FocusNode SignUpPasswordFocus = FocusNode();
@@ -230,10 +235,8 @@ class LoginPageController extends GetxController {
   void PasswordNodeDetector() {
     PasswordFocus.addListener(() {
       if (PasswordFocus.hasFocus) {
-        print("Focused");
         AddHandsUp();
       } else if (!PasswordFocus.hasFocus) {
-        print("Unfocused");
         AddHandsDown();
       }
     });
@@ -242,7 +245,7 @@ class LoginPageController extends GetxController {
   // The eyes are being Moved by the on Change Function in the textformfield ...
 
   void EyesMover(value) {
-    if (LoginPhoneFocus.hasFocus) {
+    if (LoginEmailFocus.hasFocus) {
       if (value.length <= 15) {
         AddLookLeft();
       } else {
@@ -250,27 +253,25 @@ class LoginPageController extends GetxController {
       }
     }
   }
-  // The eyes are being Moved by the on Change Function in the textformfield ...
-  // void Check() {
-  //   // PasswordFocus.addListener(() { })
-  //   print(IsPasswordInFocus);
-  // }
+
+// Typed User Data Through Creation of user information..
+  var TypedEmailData;
+  var TypedPasswordData;
 
 // LogIn Page Validation..
-  final GlobalKey<FormState> PhoneKey = GlobalKey<FormState>();
-  final GlobalKey<FormState> SignUpPhoneKey = GlobalKey<FormState>();
+  var TypedLoginEmailData;
+  var TypedLoginPasswordData;
+}
 
-  final GlobalKey<FormState> PasswordKey = GlobalKey<FormState>();
-  final GlobalKey<FormState> SignUpPasswordKey = GlobalKey<FormState>();
-
-  final GlobalKey<FormState> EmailKey = GlobalKey<FormState>();
-  final GlobalKey<FormState> NameKey = GlobalKey<FormState>();
-  final NameFilter = r'^[a-z A-Z]+$';
-  final EmailFilter =
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-  final PhoneFilter = r'(^(?:[+0]9)?[0-9]{10,12}$)';
-  final PasswordFilter =
-      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
-  late FormState form;
-  final bool UnFocus = false;
+class AppVersion extends GetxController {
+  double Appversion = 0.1;
+  var VersionChecker =
+      FirebaseFirestore.instance.collection("AppVersion").get().then((value) {
+    value.docs.forEach((element) {
+      if (element.get("AppVersion") != 0.1) {
+        Get.to(() => FailedConnection(
+            ErrorMessage: "Old Version Please Check MEMO For new Version!"));
+      }
+    });
+  });
 }

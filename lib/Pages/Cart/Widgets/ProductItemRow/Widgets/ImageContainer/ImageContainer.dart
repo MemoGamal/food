@@ -1,8 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
-import 'package:get/get.dart';
 
 import '../../../../../../config/Injections.dart';
 import '../../../../../../config/app_layout.dart';
@@ -12,7 +8,7 @@ class ImageContainer extends StatelessWidget {
   ImageContainer({super.key, required this.index});
   @override
   Widget build(BuildContext context) {
-    var CartImage = Injections.CartInjection.MyMap[index]!.toList();
+    List CartImage = Injections.CartInjection.MyMap[index]!.toList();
 
     return Padding(
       padding: EdgeInsets.only(left: GetWidthinPixels(10)),

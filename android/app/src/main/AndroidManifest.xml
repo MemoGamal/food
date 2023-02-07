@@ -4,6 +4,7 @@
         android:label="flutter_clean_code_ecomm_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        
         <activity
             android:name=".MainActivity"
             android:exported="true"

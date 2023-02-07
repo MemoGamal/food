@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "377847612438",
+    "project_id": "e-commerce-food-project",
+    "storage_bucket": "e-commerce-food-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377847612438:android:d21ff8958e7e155af92137",
+        "android_client_info": {
+          "package_name": "com.example.flutter_clean_code_ecomm_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377847612438-5l7k3qjap92lcs4rnns68lh5imaq50vc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhnjok4O4y2pZpJoK88tJy_MLUeaOvDBI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "377847612438-5l7k3qjap92lcs4rnns68lh5imaq50vc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

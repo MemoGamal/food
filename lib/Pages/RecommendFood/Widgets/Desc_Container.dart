@@ -35,7 +35,7 @@ class Desc_Container extends StatelessWidget {
               children: [
                 // Food Name
                 Mytext(
-                  theText: Injections.NetworkInjection.Response[index].name,
+                  theText: Injections.NetworkInjection.ListOfFoodName[index],
                   textSize: 25,
                 ),
                 Gap(GetHeightinPixels(15)),
@@ -71,8 +71,9 @@ class Desc_Container extends StatelessWidget {
                 Gap(GetHeightinPixels(15)),
                 // Description..
                 ExpandableText(
-                    Text: Injections
-                        .NetworkInjection.Response[index].description),
+                  Text: Injections
+                      .NetworkInjection.ListOfLongFoodDescription[index],
+                ),
               ],
             ),
           ],

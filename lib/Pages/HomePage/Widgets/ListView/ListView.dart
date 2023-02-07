@@ -17,7 +17,7 @@ class theListView extends StatelessWidget {
       child: ListView.builder(
         shrinkWrap: true,
         // itemCount: NetworkInjection.Response.length,
-        itemCount: 18,
+        itemCount: 6,
         physics: const NeverScrollableScrollPhysics(),
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {

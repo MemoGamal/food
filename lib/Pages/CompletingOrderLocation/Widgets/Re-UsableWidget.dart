@@ -33,17 +33,17 @@ class ReUsableWidget extends StatelessWidget {
             fontFamily: "Number1",
           ),
         ),
-        CustomTextFormField(
-          phone: Phone,
-          hintText: HintText,
-          prefixIcon: Icon(
-            TextFormFieldIcon,
-            color: iconColor1,
-          ),
-          focusNode: Injections.LogInPageInjection.PhoneFocus,
-          globalKey: Injections.LogInPageInjection.NameKey,
-          validator: Injections.LogInPageInjection.PhoneFilter,
-        ),
+        // CustomTextFormField(
+        //   phone: Phone,
+        //   hintText: HintText,
+        //   // prefixIcon: Icon(
+        //   //   TextFormFieldIcon,
+        //   //   color: iconColor1,
+        //   // ),
+        //   focusNode: Injections.LogInPageInjection.PhoneFocus,
+        //   // globalKey: Injections.LogInPageInjection.NameKey,
+        //   validator: Injections.LogInPageInjection.PhoneFilter,
+        // ),
         Gap(GetHeightinPixels(10)),
       ],
     );

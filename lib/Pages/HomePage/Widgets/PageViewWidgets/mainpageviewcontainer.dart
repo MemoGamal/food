@@ -26,8 +26,9 @@ class mainPageViewContainer extends StatelessWidget {
         ), // Margin to disconnect page1 from page 2..
         decoration: BoxDecoration(
           image: DecorationImage(
-            image:
-                NetworkImage(Injections.NetworkInjection.Response[index].image),
+            image: NetworkImage(
+              Injections.NetworkInjection.ListOfFoodLink[index],
+            ),
             fit: BoxFit.cover,
           ),
           borderRadius: BorderRadius.circular(

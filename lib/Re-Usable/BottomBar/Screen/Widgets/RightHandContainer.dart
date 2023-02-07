@@ -25,16 +25,18 @@ class RightHandContainer extends StatelessWidget {
           ? () {
               List _PrivateList = [];
 
-              Injections.CartInjection.addProducts(index);
+              Injections.CartInjection.addProducts(
+                  index); // Check if it exists or no ?
 
               // Taking the total order number and assigning it to Cart(Each Item order number)- > Number of
               Injections.CartInjection.NumberOfOrders
                   .addAll({index: Injections.PriceInjection.Number.value});
 
               _PrivateList.addAll([
-                Injections.NetworkInjection.Response[index].image,
-                Injections.NetworkInjection.Response[index].name,
+                Injections.NetworkInjection.ListOfFoodLink[index],
+                Injections.NetworkInjection.ListOfFoodName[index],
                 Injections.CartInjection.NumberOfOrders[index],
+                Injections.NetworkInjection.ListOfFoodPrice[index],
               ]);
 
               Injections.CartInjection.MyMap.addAll({index: _PrivateList});
@@ -59,7 +61,10 @@ class RightHandContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(GetHeightinPixels(20)),
           color: mainColor,
         ),
-        child: RightHandContainerChild(PageID: PageID),
+        child: RightHandContainerChild(
+          PageID: PageID,
+          index: index,
+        ),
       ),
     );
   }

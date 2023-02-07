@@ -8,16 +8,19 @@ import '../../../../Controller/Controller.dart';
 import '../../../../config/TextWidget.dart';
 
 class PriceToCart extends StatelessWidget {
-  const PriceToCart({super.key});
+  int index;
+  PriceToCart({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
+    Injections.PriceInjection.Price =
+        Injections.NetworkInjection.ListOfFoodPrice[index];
     Injections.PriceInjection.PriceMultiplier();
     return GetBuilder<OrderGetterController>(
       builder: (controller) {
         return Center(
           child: Mytext(
-            theText: "${Injections.PriceInjection.PriceGetter} | Add To Cart",
+            theText: "${Injections.PriceInjection.Result} | Add To Cart",
             textSize: 20,
             textColour: Colors.white,
           ),

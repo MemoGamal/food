@@ -18,7 +18,7 @@ class ImageWidget extends StatelessWidget {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: NetworkImage(
-                  Injections.NetworkInjection.Response[index].image),
+                  Injections.NetworkInjection.ListOfFoodLink[index]),
               fit: BoxFit.cover,
             ),
           ),

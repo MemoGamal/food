@@ -3,9 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_code_ecomm_app/Controller/Controller.dart';
 import 'package:flutter_clean_code_ecomm_app/config/Injections.dart';
-import 'package:flutter_clean_code_ecomm_app/config/app_layout.dart';
 import 'package:get/get.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
 import '../Cart/Screen/Cart.dart';
 import '../HomePage/Screen/HomePage.dart';

@@ -15,7 +15,7 @@ class Bottom_AppBar extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: GetHeightinPixels(15)),
       child: Center(
         child: Mytext(
-          theText: Injections.NetworkInjection.Response[index].name,
+          theText: Injections.NetworkInjection.ListOfFoodName[index],
         ),
       ),
     );

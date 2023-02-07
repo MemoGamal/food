@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_clean_code_ecomm_app/Pages/SignUp&LogInPages/Widgets/Enum.dart';

@@ -26,7 +26,7 @@ class SecondContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Mytext(
-            theText: Injections.NetworkInjection.Response[index].name, // Name
+            theText: Injections.NetworkInjection.ListOfFoodName[index], // Name
             textColour: mainBlackColor,
             textSize: 20,
           ),

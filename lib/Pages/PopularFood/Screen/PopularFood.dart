@@ -25,7 +25,7 @@ class PopularFood extends StatelessWidget {
               ],
               flexibleSpace: FlexibleSpaceBar(
                 background: Image.network(
-                  Injections.NetworkInjection.Response[index].image,
+                  Injections.NetworkInjection.ListOfFoodLink[index],
                   fit: BoxFit.cover,
                 ),
               ),
@@ -38,8 +38,8 @@ class PopularFood extends StatelessWidget {
             ),
             SliverToBoxAdapter(
               child: Mytext(
-                theText:
-                    Injections.NetworkInjection.Response[index].description,
+                theText: Injections
+                    .NetworkInjection.ListOfLongFoodDescription[index],
                 dontOverFlowText: true,
                 textSize: 30,
               ),

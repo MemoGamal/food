@@ -1,8 +1,3 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_clean_code_ecomm_app/Pages/HomePage/Screen/HomePage.dart';
-import 'package:get/get.dart';
-
 import '../../config/Injections.dart';
 
 Init() {
@@ -12,4 +7,5 @@ Init() {
   Injections.NetworkInjection;
   Injections.BottomBarInjection;
   Injections.LogInPageInjection;
+  Injections.AppVersionInjection;
 }

@@ -30,7 +30,7 @@ class AllignedContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Mytext(
-                  theText: Injections.NetworkInjection.Response[index].name,
+                  theText: Injections.NetworkInjection.ListOfFoodName[index],
                   textSize: 25,
                   thisFontWeight: FontWeight.w400,
                   textColour: mainBlackColor,

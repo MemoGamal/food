@@ -49,6 +49,9 @@ dependencies:
   geocoding:
   geolocator:
   rive:
+  firebase_core: ^2.4.1
+  firebase_auth:
+  cloud_firestore:
 dev_dependencies:
   flutter_test:
     sdk: flutter

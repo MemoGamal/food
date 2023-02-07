@@ -10,4 +10,5 @@ class Injections {
   static get CartInjection => Get.put(CartController());
   static get BottomBarInjection => Get.put(BottomBarController());
   static get LogInPageInjection => Get.put(LoginPageController());
+  static get AppVersionInjection => Get.put(AppVersion());
 }

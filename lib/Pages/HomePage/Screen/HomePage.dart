@@ -1,14 +1,10 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_code_ecomm_app/Controller/Controller.dart';
-import 'package:flutter_clean_code_ecomm_app/config/Injections.dart';
 import 'package:flutter_clean_code_ecomm_app/config/TextWidget.dart';
 import 'package:flutter_clean_code_ecomm_app/config/app_layout.dart';
 import 'package:flutter_clean_code_ecomm_app/config/colors.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
-import '../../../Feauture/Init/Init.dart';
 import '../Widgets/ListView/ListView.dart';
 import '../Widgets/TopBarWidgets/custom_Row.dart';
 import '../Widgets/PageView/thePageView.dart';

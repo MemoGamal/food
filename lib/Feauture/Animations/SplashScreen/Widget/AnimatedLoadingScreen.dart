@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../../../config/Injections.dart';
+
 class AnimatedLoadingScreen extends StatelessWidget {
   const AnimatedLoadingScreen({super.key});
 
@@ -33,6 +35,11 @@ class AnimatedLoadingScreen extends StatelessWidget {
             backgroundColor: Colors.transparent,
             elevation: 0,
           ).h(100).p(16),
+          ElevatedButton(
+              onPressed: () {
+                Injections.NetworkInjection.FetchProduct();
+              },
+              child: Text("Check!"))
         ],
       ),
     );

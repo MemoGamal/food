@@ -17,7 +17,7 @@ class FirstContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(GetHeightinPixels(15)),
         image: DecorationImage(
           image: NetworkImage(Injections
-              .NetworkInjection.Response[index].image), // Uncomment Later..
+              .NetworkInjection.ListOfFoodLink[index]), // Uncomment Later..
           fit: BoxFit.cover,
         ),
       ),

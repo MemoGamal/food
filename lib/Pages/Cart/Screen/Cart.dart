@@ -1,12 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_clean_code_ecomm_app/Feauture/Animations/Failed_Connection_Page/Screen/Screen.dart';
 import 'package:flutter_clean_code_ecomm_app/Pages/Cart/Widgets/EmptyCart/EmptyCart.dart';
 import 'package:flutter_clean_code_ecomm_app/config/Injections.dart';
-import 'package:get/get.dart';
-import 'package:http/http.dart';
 
 import '../../../Re-Usable/BottomBar/Screen/BottomBar.dart';
 import '../Widgets/ProductItemRow/Screen/ProductRow.dart';

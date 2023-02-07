@@ -9,18 +9,28 @@ import '../../BottomBarWidgets/Price&SentToCart/PriceGetter&SendToCart.dart';
 
 class RightHandContainerChild extends StatelessWidget {
   final String PageID;
-  const RightHandContainerChild({super.key, required this.PageID});
+  final int index;
+
+  const RightHandContainerChild({
+    super.key,
+    required this.PageID,
+    required this.index,
+  });
 
   @override
   Widget build(BuildContext context) {
     var ContainerChild;
     switch (PageID) {
       case "ReccomendedFood":
-        return ContainerChild = const PriceToCart();
+        return ContainerChild = PriceToCart(
+          index: index,
+        );
       case "CartPage":
         return ContainerChild = const CartSentToPayments();
       case "PopularFood":
-        return ContainerChild = const PriceToCart();
+        return ContainerChild = PriceToCart(
+          index: index,
+        );
       default:
     }
     return Container(

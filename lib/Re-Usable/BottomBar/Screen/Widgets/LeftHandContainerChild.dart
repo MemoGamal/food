@@ -1,8 +1,5 @@
-// ignore_for_file: non_constant_identifier_names, must_be_immutable, file_names
-
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_code_ecomm_app/config/Injections.dart';
-import 'package:flutter_clean_code_ecomm_app/config/TextWidget.dart';
 import 'package:flutter_clean_code_ecomm_app/config/app_layout.dart';
 import 'package:get/get.dart';
 import '../../../../../config/colors.dart';
@@ -36,9 +33,7 @@ class LeftHandContainerChild extends StatelessWidget {
             Injections.CartInjection.TotalPriceFun(index);
             return ContainerChild = Center(
               child: Text(
-                Injections.CartInjection.TotalPriceGetter <= 10
-                    ? "TotalPrice: ${Injections.CartInjection.TotalPriceGetter.toString().substring(0, 3)} "
-                    : "TotalPrice:  ${Injections.CartInjection.TotalPriceGetter.toString().substring(0, 4)} ",
+                Injections.CartInjection.TotalPriceGetter.toString(),
                 maxLines: 1,
                 style: TextStyle(
                   fontSize: 20,

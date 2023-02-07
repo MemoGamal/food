@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
 import '../../../../../config/app_layout.dart';
 import '../Widgets/Desc_Container/Screen/Desc_Container.dart';
 import '../Widgets/ImageContainer/ImageContainer.dart';
